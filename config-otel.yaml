@@ -8,10 +8,17 @@ receivers:
 
 exporters:
   prometheus:
-    endpoint: 0.0.0.0:8889
+    endpoint: otel-collector:8889
+  otlphttp/logs:
+    endpoint: loki:3100/otlp
+    tls:
+      insecure: true
 
 service:
   pipelines:
     metrics:
       receivers: [otlp]
       exporters: [prometheus]
+    logs:
+      receivers: [otlp]
+      exporters: [otlphttp/logs]
