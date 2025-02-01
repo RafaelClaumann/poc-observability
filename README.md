@@ -1,3 +1,8 @@
+# Observability
+
+Estrutura
+![image](https://github.com/user-attachments/assets/82b9f9f7-07a9-41d4-b877-2b04768e8e4e)
+
 
 https://docs.spring.io/spring-boot/reference/actuator/metrics.html#actuator.metrics.getting-started
 
