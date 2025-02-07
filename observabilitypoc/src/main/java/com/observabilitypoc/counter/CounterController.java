@@ -23,7 +23,7 @@ public class CounterController {
     }
 
     @GetMapping
-    public ResponseEntity<Map<String, Boolean>> okokok(@RequestParam String name) {
+    public ResponseEntity<Map<String, Boolean>> notification() {
         boolean isGeneric = random.nextBoolean();
         boolean wasScheduled = random.nextBoolean();
 
