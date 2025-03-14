@@ -38,7 +38,13 @@ public class BookService {
 
     @CacheEvict(cacheNames = "books", key = "#isbn")
     public boolean deleteBookByISBN(final String isbn) {
-        return javaBooks.removeIf(book -> book.isbn().equalsIgnoreCase(isbn));
+        if (javaBooks.removeIf(book -> book.isbn().equalsIgnoreCase(isbn))) {
+            log.info("Book deleted: {}", isbn);
+            return true;
+        }
+
+        log.info("Book not found: {}", isbn);
+        return false;
     }
 
 }
