@@ -37,15 +37,37 @@ services:
     container_name: grafana
     volumes:
       - ./config-grafana-datasources.yaml:/etc/grafana/provisioning/datasources/provisioning.yml
-    ports:
-      - "3000:3000"
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+    ports:
+      - "3000:3000"
     networks:
       - observability
 
+  redis:
+    image: redis:latest
+    container_name: redis_cache
+    ports:
+      - "6379:6379"
+    networks:
+      - cache
+
+  # connection string: redis://redis_cache:6379
+  redisinsight:
+    image: redislabs/redisinsight:latest
+    container_name: redis_insight
+    restart: always
+    depends_on:
+      - redis
+    ports:
+      - "5540:5540"  # Interface web
+    networks:
+      - cache
+
 networks:
   observability:
+    driver: bridge
+  cache:
     driver: bridge
