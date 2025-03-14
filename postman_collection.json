@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "3c9d27f4-d086-4476-99ac-5dccf83a420e",
+		"name": "POC Observability",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15997555"
+	},
+	"item": [
+		{
+			"name": "gauge",
+			"item": [
+				{
+					"name": "Incrementar Pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/incrementar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"incrementar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Decrementar pedido",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/pedidos/decrementar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"pedidos",
+								"decrementar"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "timer",
+			"item": [
+				{
+					"name": "Timer",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/timer/latency",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"timer",
+								"latency"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "counter",
+			"item": [
+				{
+					"name": "Notification",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/counter",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"counter"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cache",
+			"item": [
+				{
+					"name": "Fetch",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/book/fetch?book_isbn=9788575223920",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"fetch"
+							],
+							"query": [
+								{
+									"key": "book_isbn",
+									"value": "9788576055643",
+									"disabled": true
+								},
+								{
+									"key": "book_isbn",
+									"value": "9788575223920",
+									"description": "book with fetch delay"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/book/remove?book_isbn=9788576055643",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"book",
+								"remove"
+							],
+							"query": [
+								{
+									"key": "book_isbn",
+									"value": "9788576055643"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
