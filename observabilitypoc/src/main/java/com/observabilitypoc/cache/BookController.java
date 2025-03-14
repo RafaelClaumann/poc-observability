@@ -3,6 +3,7 @@ package com.observabilitypoc.cache;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -18,18 +19,19 @@ public class BookController {
     }
 
     @GetMapping("/fetch")
-    public Book saveBook(@RequestParam(name = "book_isbn") String isbn) {
+    public ResponseEntity<Book> saveBook(@RequestParam(name = "book_isbn") String isbn) {
         // debug to see cache items
         Cache book = cacheManager.getCache("books");
-        return bookService.getBookByISBN(isbn);
+        return ResponseEntity.ok(bookService.getBookByISBN(isbn));
     }
 
     @GetMapping("/remove")
-    @ResponseStatus(HttpStatus.OK)
-    public void removeBook(@RequestParam(name = "book_isbn") String isbn) {
+    public ResponseEntity<?> removeBook(@RequestParam(name = "book_isbn") String isbn) {
         // debug to see cache items
         Cache book = cacheManager.getCache("books");
-        bookService.deleteBookByISBN(isbn);
+        if(bookService.deleteBookByISBN(isbn))
+            return ResponseEntity.status(HttpStatus.OK).build();
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
 
 }
